@@ -36,7 +36,9 @@ calendar_linda/
 
 Install Flask via pip if you haven't already:
 
-
+```
+pip install flask
+```
 ---
 
 ## How to Run
