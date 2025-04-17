@@ -15,3 +15,15 @@ This initial version includes user registration and login functionality.
 
 ## Project Structure
 
+
+calendar_linda/
+│
+├── app.py # Main Flask application
+├── templates/ # HTML templates
+│ ├── login.html # Login page template
+│ ├── register.html # Registration page template
+│ └── home.html # Dashboard page template
+└── static/
+└── style.css # Basic CSS styling
+
+text
