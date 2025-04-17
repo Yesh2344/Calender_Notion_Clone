@@ -26,4 +26,13 @@ calendar_linda/
 └── static/
 └── style.css # Basic CSS styling
 
-text
+
+---
+
+## Prerequisites
+
+- Python 3.x installed on your system
+- Flask Python package
+
+Install Flask via pip if you haven't already:
+
