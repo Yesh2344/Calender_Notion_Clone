@@ -36,3 +36,12 @@ calendar_linda/
 
 Install Flask via pip if you haven't already:
 
+
+---
+
+## How to Run
+
+1. Clone or download this repository.
+2. Navigate to the project folder in your terminal.
+3. Run the Flask application:
+
