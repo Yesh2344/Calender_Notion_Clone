@@ -76,3 +76,11 @@ https://127.0.0.1:5000/
 - Add user profile and settings pages
 - Responsive and improved UI design
 
+---
+
+## License
+
+This project is open source and free to use.
+
+---
+
