@@ -51,3 +51,8 @@ pip install flask
 python app.py
 ```
 
+4. Open your web browser and go to:
+
+```
+https://127.0.0.1:5000/
+```
