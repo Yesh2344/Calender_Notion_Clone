@@ -56,3 +56,13 @@ python app.py
 ```
 https://127.0.0.1:5000/
 ```
+
+---
+
+## Usage
+
+- **Register:** Create a new user account.
+- **Login:** Access your dashboard using your credentials.
+- **Dashboard:** See a welcome message (calendar features coming soon).
+- **Logout:** End your session.
+
