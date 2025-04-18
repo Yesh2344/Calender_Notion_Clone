@@ -84,3 +84,7 @@ This project is open source and free to use.
 
 ---
 
+## Contact
+
+For questions or suggestions, please open an issue or contact the project maintainer.
+
