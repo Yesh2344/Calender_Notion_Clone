@@ -47,3 +47,7 @@ pip install flask
 2. Navigate to the project folder in your terminal.
 3. Run the Flask application:
 
+```
+python app.py
+```
+
