@@ -66,3 +66,13 @@ https://127.0.0.1:5000/
 - **Dashboard:** See a welcome message (calendar features coming soon).
 - **Logout:** End your session.
 
+---
+
+## Future Improvements
+
+- Add interactive calendar view with event management
+- Store user data in a database instead of in-memory dictionary
+- Implement password hashing for security
+- Add user profile and settings pages
+- Responsive and improved UI design
+
