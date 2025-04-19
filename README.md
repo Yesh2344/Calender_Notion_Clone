@@ -49,40 +49,39 @@ pip install flask
 ```
 ---
 
-## How to Run
+
+---
+
+### Running the App
 
 1. Clone or download this repository.
-2. Navigate to the project folder in your terminal.
-3. Run the Flask application:
+2. Navigate to the project directory.
+3. Start the Flask app:
 
-```
-python app.py
-```
+    ```
+    python app.py
+    ```
 
-4. Open your web browser and go to:
-
-```
-https://127.0.0.1:5000/
-```
+4. Open your browser and go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
 
 ---
 
 ## Usage
 
-- **Register:** Create a new user account.
-- **Login:** Access your dashboard using your credentials.
-- **Dashboard:** See a welcome message (calendar features coming soon).
-- **Logout:** End your session.
+- **Register:** Create a new account on the Register page.
+- **Login:** Use your credentials to log in.
+- **Dashboard:** View the current month’s calendar. (More features coming soon!)
+- **Logout:** Click the logout link to end your session.
 
 ---
 
-## Future Improvements
+## Next Steps / Future Improvements
 
-- Add interactive calendar view with event management
-- Store user data in a database instead of in-memory dictionary
-- Implement password hashing for security
-- Add user profile and settings pages
-- Responsive and improved UI design
+- Add event creation, editing, and deletion
+- Store user and event data in a database (e.g., SQLite)
+- Password hashing for improved security
+- Enhanced calendar features (day/week view, reminders)
+- Improved accessibility and animations
 
 ---
 
@@ -91,6 +90,9 @@ https://127.0.0.1:5000/
 This project is open source and free to use.
 
 ---
+
+*Made with Flask & ❤️*
+
 
 ## Contact
 
