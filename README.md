@@ -1,24 +1,24 @@
 # Calendar Linda
 
-A modern, clean calendar web application inspired by Linda, built with Python (Flask) and HTML/CSS.
+A modern, clean calendar web application built with Python (Flask) and HTML/CSS. It features user authentication, a visual calendar, and event management.
 
-## Features (So Far)
+## Features
 
-- User registration and login with session management
-- Clean, horizontally split UI for login, registration, and dashboard
-- Responsive design for desktop and mobile
-- Simple interactive calendar (month view) on the dashboard
-- Logout functionality
+*   User registration and login
+*   Modern split layout design
+*   Interactive calendar (middle section)
+*   Event creation and display (right section)
+*   Responsive design for desktop and mobile
 
 ## Screenshots
 
-| Login/Register | Dashboard (Calendar) |
-|---|---|
-| ![Login Screenshot](docs/login.png) | ![Dashboard Screenshot](docs/dashboard.png) |
+| Login/Register | Dashboard        |
+| :------------- | :--------------- |
+| (Add image)    | (Add image)      |
 
-*(Add screenshots in the `docs/` folder if you wish!)*
+*Note: Add actual screenshots of your login/register and dashboard pages in the `docs/` folder if available.*
 
----
+## Project Structure
 
 ## Project Structure
 
