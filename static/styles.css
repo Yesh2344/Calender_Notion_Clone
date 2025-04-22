@@ -1,3 +1,4 @@
+/* Reset and base styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,69 +14,86 @@ body {
     justify-content: center;
 }
 
-/* Split card container */
+/* Unified dashboard card */
 .split-card {
     display: flex;
     flex-direction: row;
     background: #fff;
-    border-radius: 16px;
+    border-radius: 24px;
     box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
-    width: 700px;
-    max-width: 95vw;
-    min-height: 400px;
+    width: 900px;
+    max-width: 98vw;
+    min-height: 520px;
     overflow: hidden;
     margin: 0 auto;
+    transition: box-shadow 0.3s;
 }
 
+.split-card:hover {
+    box-shadow: 0 12px 40px rgba(44, 62, 80, 0.18);
+}
+
+/* Both sections share padding and alignment */
 .split-left, .split-right {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Align to top */
     align-items: center;
-    padding: 40px 32px;
+    padding: 48px 36px;
+    min-width: 0;
 }
 
 .split-left {
     background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
     color: #22223b;
     text-align: center;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
 }
 
 .split-left h2 {
-    font-size: 2.1rem;
-    margin-bottom: 15px;
+    font-size: 2.3rem;
+    margin-bottom: 18px;
     font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .split-left p {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: #22223b;
+    opacity: 0.9;
+    line-height: 1.5;
 }
 
 .split-right {
     background: #fff;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    align-items: center;
 }
 
 .split-right h2 {
     margin-bottom: 24px;
     color: #22223b;
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1px;
+    align-self: center;
 }
 
 form {
     width: 100%;
-    max-width: 260px;
+    max-width: 320px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    margin-bottom: 16px;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="date"] {
     padding: 12px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     border: 1.5px solid #bcbcbc;
     border-radius: 8px;
     font-size: 1rem;
@@ -83,7 +101,7 @@ input[type="text"], input[type="password"] {
     transition: border-color 0.2s;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus {
     border-color: #74ebd5;
     outline: none;
 }
@@ -128,6 +146,9 @@ ul {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
+    display: inline-block;
+    margin-top: 18px;
+    align-self: center;
 }
 
 .split-right a:hover {
@@ -135,24 +156,26 @@ ul {
     text-decoration: underline;
 }
 
-/* Dashboard calendar styles */
+/* Calendar controls */
 .calendar-nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Align buttons to edges */
     align-items: center;
-    margin-bottom: 12px;
-    gap: 18px;
+    margin-bottom: 14px;
+    width: 100%;
 }
 
 .calendar-nav button {
-    padding: 6px 14px;
+    padding: 8px 22px;
     font-size: 1.05rem;
-    border-radius: 6px;
+    border-radius: 8px;
     border: none;
     background: #74ebd5;
     color: #22223b;
     cursor: pointer;
+    font-weight: 600;
     transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
 }
 
 .calendar-nav button:hover {
@@ -160,26 +183,32 @@ ul {
 }
 
 #monthYear {
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #457b9d;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #22223b;
+    letter-spacing: 1px;
 }
 
+/* Calendar table */
 .calendar {
     width: 100%;
     max-width: 340px;
     margin: 0 auto 16px auto;
     border-collapse: collapse;
     box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+    background: #f9f9fb;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .calendar th, .calendar td {
     width: 14.28%;
-    height: 42px;
+    height: 44px;
     text-align: center;
     border: 1px solid #e0e0e0;
     font-size: 1rem;
     background: #f7f7f7;
+    transition: background 0.2s;
 }
 
 .calendar th {
@@ -188,24 +217,148 @@ ul {
     font-weight: 600;
 }
 
+.calendar td {
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.calendar td:hover {
+    background: #d0f0ff;
+}
+
 .calendar .today {
-    background: #74ebd5;
+    background: #74ebd5 !important;
     color: #22223b;
     font-weight: bold;
     border-radius: 50%;
+    box-shadow: 0 0 0 2px #ACB6E5 inset;
 }
 
-/* Responsive for mobile */
+/* Event Form */
+#eventForm {
+    margin: 18px 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+}
+
+#eventForm input[type="date"],
+#eventForm input[type="text"] {
+    padding: 12px;
+    border: 1.5px solid #bcbcbc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f7f7f7;
+}
+
+#eventForm input[type="date"]:focus,
+#eventForm input[type="text"]:focus {
+    border-color: #74ebd5;
+    outline: none;
+}
+
+#eventForm button {
+    padding: 12px;
+    background: linear-gradient(90deg, #74ebd5, #ACB6E5);
+    color: #22223b;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 4px;
+}
+
+#eventForm button:hover {
+    background: linear-gradient(90deg, #ACB6E5, #74ebd5);
+}
+
+/* Event List */
+#eventList {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 320px;
+    min-height: 50px;
+}
+
+#eventList h4 {
+    color: #457b9d;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+#eventList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#eventList li {
+    padding: 10px 12px;
+    margin: 8px 0;
+    background: #fff;
+    border-radius: 6px;
+    color: #e63946;
+    font-weight: 500;
+    font-size: 1rem;
+    box-shadow: 0 1px 4px rgba(44, 62, 80, 0.05);
+    transition: background 0.2s;
+}
+
+#eventList li:hover {
+    background: #f1f3f5;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5);
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    filter: invert(0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+    .split-card {
+        width: 98vw;
+    }
+    .split-left, .split-right {
+        padding: 32px 12px;
+    }
+}
+
 @media (max-width: 800px) {
     .split-card {
         flex-direction: column;
         width: 98vw;
         min-height: unset;
+        border-radius: 18px;
     }
     .split-left, .split-right {
-        padding: 30px 12px;
+        border-radius: 0;
+        padding: 28px 8px;
+        align-items: center;
     }
-    .calendar {
-        font-size: 0.9rem;
+    .split-left {
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+        border-bottom-left-radius: 0;
+    }
+    .split-right {
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        border-top-right-radius: 0;
+    }
+    #eventList, #eventForm, form {
+        max-width: 98vw;
     }
 }

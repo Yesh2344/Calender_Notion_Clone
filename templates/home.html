@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Home - Calendar Linda</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
     <div class="split-card">
         <div class="split-left">
@@ -18,6 +20,12 @@
                 <button onclick="nextMonth()">Next &gt;</button>
             </div>
             <table class="calendar" id="calendar"></table>
+            <form method="post" action="{{ url_for('add_event') }}" id="eventForm">
+                <input type="date" name="date" id="eventDate" required>
+                <input type="text" name="event" placeholder="Event description" required>
+                <button type="submit">Add Event</button>
+            </form>
+            <div id="eventList"></div>
             <a href="{{ url_for('logout') }}">Logout</a>
         </div>
     </div>
@@ -43,7 +51,7 @@
             let daysInMonth = new Date(year, month + 1, 0).getDate();
 
             let html = '<tr>';
-            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', Fri', Sat'];
             for (let d of days) {
                 html += `<th>${d}</th>`;
             }
@@ -93,6 +101,40 @@
 
         // Initial render
         renderCalendar(currentMonth, currentYear);
+
+        function showEvents(dateStr) {
+            fetch('/get_events')
+                .then(response => response.json())
+                .then(data => {
+                    let events = data[dateStr] || [];
+                    let html = '<h4>Events for ' + dateStr + ':</h4>';
+                    if (events.length === 0) {
+                        html += '<p>No events.</p>';
+                    } else {
+                        html += '<ul>' + events.map(e => '<li>' + e + '</li>').join('') + '</ul>';
+                    }
+                    document.getElementById('eventList').innerHTML = html;
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('calendar').addEventListener('click', function (e) {
+                if (e.target.tagName === 'TD' && e.target.textContent !== '') {
+                    let day = e.target.textContent;
+                    let month = currentMonth + 1;
+                    let dateStr = currentYear + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+                    document.getElementById('eventDate').value = dateStr;
+                    showEvents(dateStr);
+                }
+            });
+
+            let todayStr = today.getFullYear() + '-' +
+                ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1) + '-' +
+                (today.getDate() < 10 ? '0' : '') + today.getDate();
+            document.getElementById('eventDate').value = todayStr;
+            showEvents(todayStr);
+        });
     </script>
 </body>
+
 </html>
