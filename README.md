@@ -85,16 +85,30 @@ pip install flask
 
 ---
 
+## How to Run
+
+1.  Clone or download this repository.
+2.  Navigate to the project directory.
+3.  Run the Flask app:
+
+    ```
+    python app.py
+    ```
+4.  Open your browser and go to `http://127.0.0.1:5000/`.
+
+## Usage
+
+*   **Register**: Create a new user account.
+*   **Login**: Access your dashboard using your credentials.
+*   **Dashboard**:
+    *   View the current month's calendar in the middle section.
+    *   Add events on the right.
+*   **Logout**: Click the "Logout" button to end your session.
+
+## Contributing
+
+Feel free to fork this project, make changes, and submit pull requests.
+
 ## License
 
-This project is open source and free to use.
-
----
-
-*Made with Flask & ❤️*
-
-
-## Contact
-
-For questions or suggestions, please open an issue or contact the project maintainer.
-
+This project is open source and available under the [License Name] License.
