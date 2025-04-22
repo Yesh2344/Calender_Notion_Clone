@@ -50,10 +50,6 @@ pip install flask
 ---
 
 
----
-
-
-
 ## Usage
 
 - **Register:** Create a new account on the Register page.
