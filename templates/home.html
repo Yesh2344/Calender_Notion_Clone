@@ -12,7 +12,7 @@
             <h2>Hello, {{ username }}!</h2>
             <p>This is your personal calendar dashboard.<br>Manage your events and schedule with ease.</p>
         </div>
-        <div class="split-right">
+        <div class="split-middle">
             <h2>Your Calendar</h2>
             <div class="calendar-nav">
                 <button onclick="prevMonth()">&lt; Prev</button>
@@ -20,6 +20,9 @@
                 <button onclick="nextMonth()">Next &gt;</button>
             </div>
             <table class="calendar" id="calendar"></table>
+        </div>
+        <div class="split-right">
+            <h2>Add Event</h2>
             <form method="post" action="{{ url_for('add_event') }}" id="eventForm">
                 <input type="date" name="date" id="eventDate" required>
                 <input type="text" name="event" placeholder="Event description" required>
@@ -51,7 +54,7 @@
             let daysInMonth = new Date(year, month + 1, 0).getDate();
 
             let html = '<tr>';
-            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', Fri', Sat'];
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             for (let d of days) {
                 html += `<th>${d}</th>`;
             }

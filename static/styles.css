@@ -21,7 +21,7 @@ body {
     background: #fff;
     border-radius: 24px;
     box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
-    width: 900px;
+    width: 1100px;
     max-width: 98vw;
     min-height: 520px;
     overflow: hidden;
@@ -33,21 +33,24 @@ body {
     box-shadow: 0 12px 40px rgba(44, 62, 80, 0.18);
 }
 
-/* Both sections share padding and alignment */
-.split-left, .split-right {
+/* All sections styling */
+.split-left,
+.split-middle,
+.split-right {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align to top */
+    justify-content: flex-start;
     align-items: center;
-    padding: 48px 36px;
+    padding: 36px;
     min-width: 0;
 }
 
+/* Left section */
 .split-left {
     background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
     color: #22223b;
-    text-align: center;
+    text-align: left;
     border-top-left-radius: 24px;
     border-bottom-left-radius: 24px;
 }
@@ -66,100 +69,17 @@ body {
     line-height: 1.5;
 }
 
-.split-right {
-    background: #fff;
-    border-top-right-radius: 24px;
-    border-bottom-right-radius: 24px;
-    align-items: center;
-}
-
-.split-right h2 {
-    margin-bottom: 24px;
-    color: #22223b;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    align-self: center;
-}
-
-form {
-    width: 100%;
-    max-width: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin-bottom: 16px;
-}
-
-input[type="text"], input[type="password"], input[type="date"] {
-    padding: 12px;
-    margin-bottom: 14px;
-    border: 1.5px solid #bcbcbc;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: #f7f7f7;
-    transition: border-color 0.2s;
-}
-
-input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus {
-    border-color: #74ebd5;
-    outline: none;
-}
-
-button {
-    padding: 12px;
-    background: linear-gradient(90deg, #74ebd5, #ACB6E5);
-    color: #22223b;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    margin-top: 8px;
-}
-
-button:hover {
-    background: linear-gradient(90deg, #ACB6E5, #74ebd5);
-    color: #22223b;
-}
-
-ul {
-    width: 100%;
-    list-style: none;
-    margin-bottom: 12px;
-    color: #e63946;
-    font-weight: 500;
-    font-size: 0.97rem;
-    text-align: center;
-}
-
-.split-right p {
-    margin-top: 18px;
-    font-size: 1rem;
-    color: #22223b;
-    text-align: center;
-}
-
-.split-right a {
-    color: #457b9d;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-    display: inline-block;
-    margin-top: 18px;
-    align-self: center;
-}
-
-.split-right a:hover {
-    color: #1d3557;
-    text-decoration: underline;
+/* Middle section (Calendar) */
+.split-middle {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 0;
 }
 
 /* Calendar controls */
 .calendar-nav {
     display: flex;
-    justify-content: space-between; /* Align buttons to edges */
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 14px;
     width: 100%;
@@ -201,7 +121,8 @@ ul {
     overflow: hidden;
 }
 
-.calendar th, .calendar td {
+.calendar th,
+.calendar td {
     width: 14.28%;
     height: 44px;
     text-align: center;
@@ -232,6 +153,22 @@ ul {
     font-weight: bold;
     border-radius: 50%;
     box-shadow: 0 0 0 2px #ACB6E5 inset;
+}
+
+/* Right section */
+.split-right {
+    background: #f8f9fa;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.split-right h2 {
+    margin-bottom: 24px;
+    color: #22223b;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    align-self: flex-start;
 }
 
 /* Event Form */
@@ -281,7 +218,7 @@ ul {
     background: #f8f9fa;
     border-radius: 10px;
     padding: 16px 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     margin-bottom: 10px;
     width: 100%;
     max-width: 320px;
@@ -317,6 +254,22 @@ ul {
     background: #f1f3f5;
 }
 
+.split-right a {
+    color: #457b9d;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: inline-block;
+    margin-top: 24px;
+    align-self: flex-start;
+}
+
+.split-right a:hover {
+    color: #1d3557;
+    text-decoration: underline;
+}
+
+/* Calendar Styling */
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(0.5);
     cursor: pointer;
@@ -331,7 +284,10 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     .split-card {
         width: 98vw;
     }
-    .split-left, .split-right {
+
+    .split-left,
+    .split-middle,
+    .split-right {
         padding: 32px 12px;
     }
 }
@@ -343,22 +299,30 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
         min-height: unset;
         border-radius: 18px;
     }
-    .split-left, .split-right {
+
+    .split-left,
+    .split-middle,
+    .split-right {
         border-radius: 0;
         padding: 28px 8px;
         align-items: center;
     }
+
     .split-left {
         border-top-left-radius: 18px;
         border-top-right-radius: 18px;
         border-bottom-left-radius: 0;
     }
+
     .split-right {
         border-bottom-left-radius: 18px;
         border-bottom-right-radius: 18px;
         border-top-right-radius: 0;
     }
-    #eventList, #eventForm, form {
+
+    #eventList,
+    #eventForm,
+    form {
         max-width: 98vw;
     }
 }
