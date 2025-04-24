@@ -137,7 +137,7 @@ def get_events():
     for event in events_query:
         if event.date not in events_by_date:
             events_by_date[event.date] = []
-        events_by_date[event.date].append(event.description)
+        events_by_date[event.date].append({"id": event.id, "description": event.description})
     
     return jsonify(events_by_date)
 
