@@ -9,8 +9,10 @@
 <body>
     <div class="split-card">
         <div class="split-left">
-            <h2>Hello, {{ username }}!</h2>
-            <p>This is your personal calendar dashboard.<br>Manage your events and schedule with ease.</p>
+            <div class="split-left-content">
+                <h2>Hello, {{ username }}!</h2>
+                <p>This is your personal calendar dashboard.<br>Manage your events and schedule with ease.</p>
+            </div>
         </div>
         <div class="split-middle">
             <h2>Your Calendar</h2>
@@ -29,7 +31,7 @@
                 <button type="submit">Add Event</button>
             </form>
             <div id="eventList"></div>
-            <a href="{{ url_for('logout') }}">Logout</a>
+            <a class="split-right .logout-link" href="{{ url_for('logout') }}">Logout</a>
         </div>
     </div>
     <script>
@@ -37,6 +39,7 @@
         let today = new Date();
         let currentMonth = today.getMonth();
         let currentYear = today.getFullYear();
+        let selectedDate = today; // Track the selected date
 
         const monthNames = [
             "January", "February", "March", "April", "May", "June",
@@ -67,8 +70,15 @@
 
             // Days of the month
             for (let date = 1; date <= daysInMonth; date++) {
+                let currentDate = new Date(year, month, date);
                 let isToday = date === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-                html += `<td class="${isToday ? 'today' : ''}">${date}</td>`;
+                let isSelected = date === selectedDate.getDate() && month === selectedDate.getMonth() && year === selectedDate.getFullYear();
+
+                let className = '';
+                if (isToday) className += ' today';
+                if (isSelected) className += ' selected';
+
+                html += `<td class="${className}" data-date="${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}">${date}</td>`;
                 if ((firstDay + date) % 7 === 0 && date !== daysInMonth) {
                     html += '</tr><tr>';
                 }
@@ -105,6 +115,7 @@
         // Initial render
         renderCalendar(currentMonth, currentYear);
 
+        // Function to show events for a specific date
         function showEvents(dateStr) {
             fetch('/get_events')
                 .then(response => response.json())
@@ -120,22 +131,42 @@
                 });
         }
 
+        // Add click event listener to the calendar
         document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('calendar').addEventListener('click', function (e) {
+            const calendar = document.getElementById('calendar');
+
+            calendar.addEventListener('click', function (e) {
                 if (e.target.tagName === 'TD' && e.target.textContent !== '') {
-                    let day = e.target.textContent;
-                    let month = currentMonth + 1;
-                    let dateStr = currentYear + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+                    // Remove 'selected' class from previously selected date
+                    const selectedCell = calendar.querySelector('.selected');
+                    if (selectedCell) {
+                        selectedCell.classList.remove('selected');
+                    }
+
+                    // Get the date from the clicked cell
+                    let dateStr = e.target.dataset.date;
+                    selectedDate = new Date(dateStr);
+
+                    // Add 'selected' class to the clicked cell
+                    e.target.classList.add('selected');
+
+                    // Set the date in the input field
                     document.getElementById('eventDate').value = dateStr;
+
+                    // Show events for the selected date
                     showEvents(dateStr);
                 }
             });
 
+            // Show today's events on load
             let todayStr = today.getFullYear() + '-' +
                 ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1) + '-' +
                 (today.getDate() < 10 ? '0' : '') + today.getDate();
             document.getElementById('eventDate').value = todayStr;
             showEvents(todayStr);
+
+            // Initially highlight today's date
+            renderCalendar(currentMonth, currentYear);
         });
     </script>
 </body>
