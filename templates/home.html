@@ -36,12 +36,32 @@
             </div>
         </div>
     </div>
+
+    <!-- The Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Edit Event</h2>
+            <form id="editEventForm" onsubmit="submitEditForm(); return false;">
+                <input type="hidden" id="editEventId">
+                <label for="editEventDate">Date:</label>
+                <input type="date" id="editEventDate" name="editEventDate" required>
+                <label for="editEventDescription">Description:</label>
+                <input type="text" id="editEventDescription" name="editEventDescription" required>
+                <button type="submit">Update Event</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         // Calendar JavaScript
         let today = new Date();
         let currentMonth = today.getMonth();
         let currentYear = today.getFullYear();
         let selectedDate = today; // Track the selected date
+
+        // Modal
+        let modal = document.getElementById("editModal");
 
         const monthNames = [
             "January", "February", "March", "April", "May", "June",
@@ -130,7 +150,7 @@
                         events.forEach(event => {
                             html += `<li>
                                         ${event.description}
-                                        <button class="edit-event" onclick="editEvent(${event.id})">Edit</button>
+                                        <button class="edit-event" onclick="openModal(${event.id}, '${dateStr}', '${event.description}')">Edit</button>
                                         <button class="delete-event" onclick="deleteEvent(${event.id})">Delete</button>
                                     </li>`;
                         });
@@ -138,6 +158,61 @@
                     html += '</ul>';
                     document.getElementById('eventList').innerHTML = html;
                 });
+        }
+
+        // Function to open the modal
+        function openModal(eventId, eventDate, eventDescription) {
+            document.getElementById('editEventId').value = eventId;
+            document.getElementById('editEventDate').value = eventDate;
+            document.getElementById('editEventDescription').value = eventDescription;
+            modal.style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Submit edit form function
+        function submitEditForm() {
+            let eventId = document.getElementById('editEventId').value;
+            let eventDate = document.getElementById('editEventDate').value;
+            let eventDescription = document.getElementById('editEventDescription').value;
+
+            fetch(`/edit_event/${eventId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    date: eventDate,
+                    description: eventDescription
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    closeModal();
+                    showEvents(document.getElementById('eventDate').value);
+                    alert('Event updated successfully!');
+                } else {
+                    alert('Failed to update event.');
+                }
+            });
+        }
+
+        // Delete event function
+        function deleteEvent(eventId) {
+            fetch(`/delete_event/${eventId}`, {
+                method: 'POST',
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Refresh events after deletion
+                    showEvents(document.getElementById('eventDate').value);
+                } else {
+                    alert('Failed to delete event.');
+                }
+            });
         }
 
         // Add click event listener to the calendar
@@ -178,25 +253,11 @@
             renderCalendar(currentMonth, currentYear);
         });
 
-        // Delete event function
-        function deleteEvent(eventId) {
-            fetch(`/delete_event/${eventId}`, {
-                method: 'POST',
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Refresh events after deletion
-                    showEvents(document.getElementById('eventDate').value);
-                } else {
-                    alert('Failed to delete event.');
-                }
-            });
-        }
-
-        // Edit event function (place holder)
-        function editEvent(eventId) {
-            alert('Edit functionality is not yet implemented.');
-            // Implement your edit functionality here
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
         }
     </script>
 </body>

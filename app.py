@@ -4,6 +4,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import os
+import json
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -156,6 +157,22 @@ def delete_event(event_id):
     
     flash('Event deleted')
     return redirect(url_for('home'))
+
+@app.route('/edit_event/<int:event_id>', methods=['POST'])
+@login_required
+def edit_event(event_id):
+    event = Event.query.get_or_404(event_id)
+
+    # Check if the event belongs to the current user
+    if event.user_id != current_user.id:
+        return jsonify({'message': 'Unauthorized access'}), 403
+
+    data = json.loads(request.data)
+    event.date = data.get('date', event.date)
+    event.description = data.get('description', event.description)
+
+    db.session.commit()
+    return jsonify({'message': 'Event updated successfully'})
 
 if __name__ == '__main__':
     app.run(debug=True)
