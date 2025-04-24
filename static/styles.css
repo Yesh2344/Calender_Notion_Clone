@@ -1,184 +1,277 @@
-/* Reset and base styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     min-height: 100vh;
     background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
     font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Unified dashboard card */
+/* Card-like container for login and register forms */
+.auth-card {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+    max-width: 500px;
+    width: 90vw;
+    padding: 48px;
+    text-align: center;
+}
+
+.auth-card h2 {
+    font-size: 2.4rem;
+    margin-bottom: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #23223b;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 12px;
+    border: 1.5px solid #bcbcbc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f7f7f7;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #74ebd5;
+    outline: none;
+}
+
+button {
+    padding: 12px;
+    background: linear-gradient(90deg, #6ee7c7, #8b9cf6);
+    color: #23223b;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #8b9cf6, #6ee7c7);
+}
+
+.register-link {
+    color: #457b9d;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.register-link:hover {
+    color: #1d3557;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .auth-card {
+        padding: 32px;
+    }
+    .auth-card h2 {
+        font-size: 2rem;
+    }
+}
+
+
 .split-card {
     display: flex;
     flex-direction: row;
     background: #fff;
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
-    width: 1100px;
-    max-width: 98vw;
+    border-radius: 0 24px 24px 0;
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
+    margin: 60px 0 0 0;
     min-height: 520px;
-    overflow: hidden;
-    margin: 0 auto;
-    transition: box-shadow 0.3s;
+    min-width: 1000px;
+    max-width: 1200px;
+    width: 100%;
+    overflow: visible;
 }
 
-.split-card:hover {
-    box-shadow: 0 12px 40px rgba(44, 62, 80, 0.18);
-}
-
-/* All sections styling */
-.split-left,
-.split-middle,
-.split-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 36px;
-    min-width: 0;
-}
-
-/* Left section */
 .split-left {
+    flex: 1.1;
     background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
     color: #22223b;
-    text-align: left;
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
+    border-radius: 0 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 0 0 40px;
+}
+
+.split-left-content {
+    max-width: 320px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
 .split-left h2 {
-    font-size: 2.3rem;
-    margin-bottom: 18px;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
     font-weight: bold;
     letter-spacing: 1px;
 }
 
 .split-left p {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     color: #22223b;
     opacity: 0.9;
     line-height: 1.5;
 }
 
-/* Middle section (Calendar) */
 .split-middle {
-    background: #f8f9fa;
-    border: 1px solid #e0e0e0;
-    border-radius: 0;
+    flex: 1.3;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 0 0 0;
+    border-radius: 0 0 0 0;
+    min-width: 340px;
 }
 
-/* Calendar controls */
+.split-middle h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #23223b;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
 .calendar-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 14px;
-    width: 100%;
+    margin-bottom: 16px;
+    gap: 24px;
 }
 
 .calendar-nav button {
-    padding: 8px 22px;
-    font-size: 1.05rem;
-    border-radius: 8px;
+    background: #6ee7c7;
+    color: #23223b;
     border: none;
-    background: #74ebd5;
-    color: #22223b;
-    cursor: pointer;
+    border-radius: 8px;
+    padding: 8px 24px;
+    font-size: 1.08rem;
     font-weight: 600;
-    transition: background 0.2s;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+    cursor: pointer;
+    transition: background 0.18s;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
 }
 
 .calendar-nav button:hover {
-    background: #ACB6E5;
+    background: #74ebd5;
 }
 
 #monthYear {
     font-weight: 700;
     font-size: 1.2rem;
-    color: #22223b;
+    color: #23223b;
     letter-spacing: 1px;
 }
 
-/* Calendar table */
 .calendar {
-    width: 100%;
-    max-width: 340px;
-    margin: 0 auto 16px auto;
+    width: 320px;
     border-collapse: collapse;
-    box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+    margin-bottom: 12px;
     background: #f9f9fb;
     border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
     overflow: hidden;
 }
 
-.calendar th,
-.calendar td {
+.calendar th, .calendar td {
     width: 14.28%;
     height: 44px;
     text-align: center;
     border: 1px solid #e0e0e0;
-    font-size: 1rem;
+    font-size: 1.05rem;
     background: #f7f7f7;
     transition: background 0.2s;
+    cursor: pointer;
 }
 
 .calendar th {
     background: #e9ecef;
     color: #495057;
     font-weight: 600;
-}
-
-.calendar td {
-    cursor: pointer;
-    transition: background 0.2s;
+    cursor: default;
 }
 
 .calendar td:hover {
     background: #d0f0ff;
 }
 
-.calendar .today {
-    background: #74ebd5 !important;
-    color: #22223b;
+.calendar .today,
+.calendar .selected {
+    background: #6ee7c7 !important;
+    color: #23223b;
     font-weight: bold;
     border-radius: 50%;
     box-shadow: 0 0 0 2px #ACB6E5 inset;
 }
 
-/* Right section */
+.split-middle .logout-link {
+    display: block;
+    margin: 10px auto 0 auto;
+    color: #457b9d;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    text-align: center;
+}
+
+.split-middle .logout-link:hover {
+    color: #1d3557;
+    text-decoration: underline;
+}
+
+/* Right Section */
 .split-right {
-    background: #f8f9fa;
-    border-top-right-radius: 24px;
-    border-bottom-right-radius: 24px;
+    flex: 1.1;
+    background: #fff;
+    border-radius: 0 24px 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 48px 40px 0 40px;
+    min-width: 340px;
 }
 
 .split-right h2 {
-    margin-bottom: 24px;
-    color: #22223b;
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #23223b;
     letter-spacing: 1px;
-    align-self: flex-start;
 }
 
-/* Event Form */
 #eventForm {
-    margin: 18px 0 10px 0;
     display: flex;
     flex-direction: column;
     gap: 12px;
     width: 100%;
     max-width: 320px;
+    margin-bottom: 18px;
 }
 
 #eventForm input[type="date"],
@@ -188,6 +281,7 @@ body {
     border-radius: 8px;
     font-size: 1rem;
     background: #f7f7f7;
+    transition: border-color 0.2s;
 }
 
 #eventForm input[type="date"]:focus,
@@ -198,27 +292,25 @@ body {
 
 #eventForm button {
     padding: 12px;
-    background: linear-gradient(90deg, #74ebd5, #ACB6E5);
-    color: #22223b;
+    background: linear-gradient(90deg, #6ee7c7, #8b9cf6);
+    color: #23223b;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.08rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 4px;
+    transition: background 0.18s;
 }
 
 #eventForm button:hover {
-    background: linear-gradient(90deg, #ACB6E5, #74ebd5);
+    background: linear-gradient(90deg, #8b9cf6, #6ee7c7);
 }
 
-/* Event List */
 #eventList {
-    background: #f8f9fa;
+    background: #fff;
     border-radius: 10px;
     padding: 16px 18px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     margin-bottom: 10px;
     width: 100%;
     max-width: 320px;
@@ -241,7 +333,7 @@ body {
 #eventList li {
     padding: 10px 12px;
     margin: 8px 0;
-    background: #fff;
+    background: #f8f9fa;
     border-radius: 6px;
     color: #e63946;
     font-weight: 500;
@@ -254,22 +346,20 @@ body {
     background: #f1f3f5;
 }
 
-.split-right a {
+.split-right .logout-link {
+    display: block;
+    margin: 10px 0 0 0;
     color: #457b9d;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
-    display: inline-block;
-    margin-top: 24px;
-    align-self: flex-start;
 }
 
-.split-right a:hover {
+.split-right .logout-link:hover {
     color: #1d3557;
     text-decoration: underline;
 }
 
-/* Calendar Styling */
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(0.5);
     cursor: pointer;
@@ -280,26 +370,18 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
     .split-card {
-        width: 98vw;
-    }
-
-    .split-left,
-    .split-middle,
-    .split-right {
-        padding: 32px 12px;
+        min-width: 900px;
     }
 }
-
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .split-card {
         flex-direction: column;
+        min-width: unset;
         width: 98vw;
-        min-height: unset;
         border-radius: 18px;
     }
-
     .split-left,
     .split-middle,
     .split-right {
@@ -307,22 +389,17 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
         padding: 28px 8px;
         align-items: center;
     }
-
     .split-left {
         border-top-left-radius: 18px;
         border-top-right-radius: 18px;
         border-bottom-left-radius: 0;
     }
-
     .split-right {
         border-bottom-left-radius: 18px;
         border-bottom-right-radius: 18px;
         border-top-right-radius: 0;
     }
-
-    #eventList,
-    #eventForm,
-    form {
+    #eventList, #eventForm, form, .calendar {
         max-width: 98vw;
     }
 }
