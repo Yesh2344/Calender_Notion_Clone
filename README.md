@@ -4,11 +4,7 @@ A modern, clean calendar web application built with Python (Flask) and HTML/CSS.
 
 ## Features
 
-*   User registration and login
-*   Modern split layout design
-*   Interactive calendar (middle section)
-*   Event creation and display (right section)
-*   Responsive design for desktop and mobile
+
 
 ## Screenshots
 
