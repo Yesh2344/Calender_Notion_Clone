@@ -1,6 +1,4 @@
-# Calendar Linda
 
-A modern, clean calendar web application built with Python (Flask) and HTML/CSS. It features user authentication, a visual calendar, and event management.
 
 ## Features
 
