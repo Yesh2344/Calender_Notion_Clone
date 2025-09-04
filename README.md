@@ -12,9 +12,6 @@ A modern, clean calendar web application built with Python (Flask) and HTML/CSS.
 
 ## Screenshots
 
-| Login/Register | Dashboard        |
-| :------------- | :--------------- |
-| (Add image)    | (Add image)      |
 
 *Note: Add actual screenshots of your login/register and dashboard pages in the `docs/` folder if available.*
 
